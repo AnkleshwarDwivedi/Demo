@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B6E5E68210F014C00E59890 /* EDSunriseSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6E5E66210F014C00E59890 /* EDSunriseSet.m */; };
 		3B27F785210D9F7B0026519C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B27F784210D9F7B0026519C /* AppDelegate.swift */; };
 		3B27F787210D9F7B0026519C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B27F786210D9F7B0026519C /* ViewController.swift */; };
 		3B27F78A210D9F7B0026519C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B27F788210D9F7B0026519C /* Main.storyboard */; };
@@ -15,7 +16,6 @@
 		3B27F792210D9F800026519C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B27F790210D9F800026519C /* LaunchScreen.storyboard */; };
 		3B27F79D210D9F800026519C /* MapPOCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B27F79C210D9F800026519C /* MapPOCTests.swift */; };
 		3B27F7A8210D9F800026519C /* MapPOCUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B27F7A7210D9F800026519C /* MapPOCUITests.swift */; };
-		3B27F7BB210DA0DE0026519C /* SunHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B27F7BA210DA0DE0026519C /* SunHelper.swift */; };
 		3B27F7C0210E188E0026519C /* Annotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B27F7BF210E188E0026519C /* Annotation.swift */; };
 		3B27F7C2210E25290026519C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B27F7C1210E25290026519C /* MapKit.framework */; };
 		3B27F7C4210E27780026519C /* Delegatefile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B27F7C3210E27780026519C /* Delegatefile.swift */; };
@@ -40,6 +40,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1B6E5E65210F014B00E59890 /* MapPOC-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MapPOC-Bridging-Header.h"; sourceTree = "<group>"; };
+		1B6E5E66210F014C00E59890 /* EDSunriseSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDSunriseSet.m; sourceTree = "<group>"; };
+		1B6E5E67210F014C00E59890 /* EDSunriseSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDSunriseSet.h; sourceTree = "<group>"; };
 		3B27F781210D9F7B0026519C /* MapPOC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapPOC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B27F784210D9F7B0026519C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3B27F786210D9F7B0026519C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -54,7 +57,6 @@
 		3B27F7A3210D9F800026519C /* MapPOCUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MapPOCUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B27F7A7210D9F800026519C /* MapPOCUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPOCUITests.swift; sourceTree = "<group>"; };
 		3B27F7A9210D9F800026519C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3B27F7BA210DA0DE0026519C /* SunHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunHelper.swift; sourceTree = "<group>"; };
 		3B27F7BF210E188E0026519C /* Annotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Annotation.swift; sourceTree = "<group>"; };
 		3B27F7C1210E25290026519C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		3B27F7C3210E27780026519C /* Delegatefile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delegatefile.swift; sourceTree = "<group>"; };
@@ -177,9 +179,11 @@
 		3B27F7B9210DA0930026519C /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				1B6E5E67210F014C00E59890 /* EDSunriseSet.h */,
+				1B6E5E66210F014C00E59890 /* EDSunriseSet.m */,
 				3B27F7BF210E188E0026519C /* Annotation.swift */,
-				3B27F7BA210DA0DE0026519C /* SunHelper.swift */,
 				3B27F7C3210E27780026519C /* Delegatefile.swift */,
+				1B6E5E65210F014B00E59890 /* MapPOC-Bridging-Header.h */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -268,6 +272,7 @@
 				TargetAttributes = {
 					3B27F780210D9F7B0026519C = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 0940;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -340,12 +345,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B27F7C4210E27780026519C /* Delegatefile.swift in Sources */,
-				3B27F7BB210DA0DE0026519C /* SunHelper.swift in Sources */,
 				3B27F78D210D9F7B0026519C /* MapPOC.xcdatamodeld in Sources */,
 				3B27F787210D9F7B0026519C /* ViewController.swift in Sources */,
 				3B27F785210D9F7B0026519C /* AppDelegate.swift in Sources */,
 				3B76C570210E2A5F00FB70FA /* VCViewModel.swift in Sources */,
 				3B27F7C0210E188E0026519C /* Annotation.swift in Sources */,
+				1B6E5E68210F014C00E59890 /* EDSunriseSet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -518,8 +523,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 577N9MGWW6;
+				DEVELOPMENT_TEAM = 5K4VV2JC5V;
 				INFOPLIST_FILE = MapPOC/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -528,6 +534,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ankleshwar.MapPOC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MapPOC/Helper/MapPOC-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -537,8 +545,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 577N9MGWW6;
+				DEVELOPMENT_TEAM = 5K4VV2JC5V;
 				INFOPLIST_FILE = MapPOC/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -547,6 +556,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ankleshwar.MapPOC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MapPOC/Helper/MapPOC-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

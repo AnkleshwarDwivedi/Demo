@@ -102,7 +102,14 @@ extension ViewController: CLLocationManagerDelegate{
        
         let pin = Annotation(coordinate: coordinate2D, title: displayString, subtitle: "")
         mapView.addAnnotation(pin)
-      
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = TimeZone.current
+        
+       printTimestamp(location: location)
+ 
     }
 }
+
+
+
 

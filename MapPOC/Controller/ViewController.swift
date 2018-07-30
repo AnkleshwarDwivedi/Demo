@@ -48,32 +48,38 @@ class ViewController: UIViewController{
         setupCoreLocation()
         addOverlay()
         updateMapRegion(rangeSpan: 500)
-        let dateFormatter : DateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        let date = Date()
-        let dateString = dateFormatter.string(from: date)
-        
-        
-        
-        let solor = SunHelper(for: date, coordinate: coordinate2D)
-        print(solor?.sunrise ?? "")
-        print(solor?.sunset ?? "")
-        printTimestamp()
+       
+      
     }
     
-    func printTimestamp() {
-        let timestamp = DateFormatter.localizedString(from: NSDate() as Date, dateStyle: .medium, timeStyle: .short)
-        print(timestamp)
+    func printTimestamp(location:CLLocation) {
+    
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        let dateString = "Current date is: \(dateFormatter.string(from: Date() as Date))"
-        print(dateString)
-       // labelfordate.text = String(dateString)
+      
+        
+        let sunSet = EDSunriseSet(date:Date().today, timezone: TimeZone.current, latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+//        print(sunSet?.sunrise)
+//        print(sunSet?.sunset)
 
+        
+        if sunSet?.sunset != nil{
+            self.lblSunSet.text = self.setTime(date: (sunSet?.sunset)!) + " " + "PM"
+        }
+        if sunSet?.sunset != nil{
+             self.lblSunRise.text = self.setTime(date: (sunSet?.sunrise)!) + " " + "AM"
+        }
+        
+        
+        
+       
         
     }
 
+    func setTime(date:Date) -> String{
+        let calendar = Calendar.current
+        let time=calendar.dateComponents([.hour,.minute,.second], from: date)
+       return "\(time.hour!):\(time.minute!)"
+    }
     
  
     
@@ -150,6 +156,19 @@ class ViewController: UIViewController{
         camera.pitch = 0.0
         mapView.camera = camera
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 }
 
