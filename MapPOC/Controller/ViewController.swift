@@ -9,19 +9,22 @@
 import UIKit
 import MapKit
 import CoreLocation
+import CoreData
 
 class ViewController: UIViewController{
     @IBOutlet weak var viewBottom: UIView!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var lblSunSet: UILabel!
-    
+    var currentSelectedDate = Date()
     @IBOutlet weak var lblSunRise: UILabel!
+    var helper = Helper()
+     var coordinate2D = CLLocationCoordinate2DMake(28.7041,77.1025)
+  
+    @IBOutlet weak var lblDate: UILabel!
     
     
-    
-    
-    var coordinate2D = CLLocationCoordinate2DMake(28.7041,77.1025)
+   
     var camera = MKMapCamera()
     
     
@@ -48,18 +51,18 @@ class ViewController: UIViewController{
         setupCoreLocation()
         addOverlay()
         updateMapRegion(rangeSpan: 500)
-       
-      
+        self.lblDate.text = Date().iso8601
+        self.currentSelectedDate = Date().today
+        
     }
     
-    func printTimestamp(location:CLLocation) {
+    func printTimestamp(date: Date) {
     
         
       
         
-        let sunSet = EDSunriseSet(date:Date().today, timezone: TimeZone.current, latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-//        print(sunSet?.sunrise)
-//        print(sunSet?.sunset)
+        let sunSet = EDSunriseSet(date:date, timezone: TimeZone.current, latitude: coordinate2D.latitude, longitude: coordinate2D.longitude)
+
 
         
         if sunSet?.sunset != nil{
@@ -83,8 +86,29 @@ class ViewController: UIViewController{
     
  
     
+    @IBAction func clickToSaveLocation(_ sender: Any) {
+        self.save(lat: coordinate2D.latitude, lng: coordinate2D.longitude)
+    }
     
-    
+    func save(lat: Double,lng:Double) {
+        
+        guard let appdelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        let managedContext = appdelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "User", in: managedContext)
+        let user = NSManagedObject(entity: entity!, insertInto: managedContext)
+        
+     
+        user.setValue(lat, forKey: "lat")
+        user.setValue(lng, forKey: "lng")
+        do {
+            try managedContext.save()
+            
+            
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")            }
+    }
 
     //MARK: location
     
@@ -122,20 +146,25 @@ class ViewController: UIViewController{
         }
     }
 
+    @IBAction func clickToCurrentLocation(_ sender: Any) {
+        
+        self.mapView.setCenter(self.mapView.userLocation.coordinate, animated: true)
+    }
     
     func findAddress(address:String){
         
-        getCoordinate(address: address) { (coordinate, location, error) in
+       self.helper.getCoordinate(address: address) { (coordinate, location, error) in
             if (error != nil){
                 ECSAlert().showAlert(message: "Please search a valid address", controller: self)
                 
             }else{
                 if let coordinate = coordinate{
+                    self.coordinate2D = coordinate
                     self.mapView.camera.centerCoordinate = coordinate
                     self.mapView.camera.altitude = 1000.0
                     let pin = Annotation(coordinate: coordinate, title: address, subtitle: location)
                     self.mapView.addAnnotation(pin)
-                  
+                    self.printTimestamp(date: self.currentSelectedDate)
 
                 }
             }
@@ -158,54 +187,29 @@ class ViewController: UIViewController{
     }
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-}
-
-func placemark(annotation:Annotation, completionHandler: @escaping (CLPlacemark?) -> Void){
-    let coordinate = annotation.coordinate
-    let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
-    let geocoder = CLGeocoder()
-    geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
-        if let placemarks = placemarks{
-            completionHandler(placemarks.first)
-        } else {
-            completionHandler(nil)
-        }
+    @IBAction func clickTonextDate(_ sender: Any) {
+        self.currentSelectedDate = self.currentSelectedDate.tomorrow
+        self.printTimestamp(date: self.currentSelectedDate)
+        self.lblDate.text = self.currentSelectedDate.iso8601
+        
     }
-}
-
-func getCoordinate( address:String, completionHandler: @escaping(CLLocationCoordinate2D?,String, NSError?)->Void){
-    let geocoder = CLGeocoder()
-    geocoder.geocodeAddressString(address) { (placemarks, error) in
-        if error == nil {
-            if let placemark = placemarks?[0]{
-                let coordinate = placemark.location?.coordinate
-                if let localtiy = (placemark.locality){
-                    let location = localtiy + " " + placemark.isoCountryCode!
-                     completionHandler(coordinate, location, nil)
-                }
-                else{
-                     let location = placemark.locality ?? ""
-                     completionHandler(coordinate, location, nil)
-                }
-                
-               
-                return
-            }
-        }
-        completionHandler(nil, "", error as NSError?)
+    
+    @IBAction func clickToPreviousDate(_ sender: Any) {
+        self.currentSelectedDate = self.currentSelectedDate.yesterday
+        self.printTimestamp(date: self.currentSelectedDate)
+        self.lblDate.text = self.currentSelectedDate.iso8601
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
 
 extension ViewController : UISearchBarDelegate {
@@ -215,7 +219,7 @@ extension ViewController : UISearchBarDelegate {
             
         }
         else{
-           self.findAddress(address: searchBar.text!)
+            self.findAddress(address: searchBar.text!)
         }
         
         searchBar.resignFirstResponder()
@@ -224,8 +228,9 @@ extension ViewController : UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print("survey?search=\(searchText)")
         
-       
+        
         
         
     }
 }
+

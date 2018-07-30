@@ -95,20 +95,21 @@ extension ViewController: CLLocationManagerDelegate{
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations.last!
-        coordinate2D = location.coordinate
-        let displayString = "\(location.timestamp) Coord:\(coordinate2D) Alt: \(location.altitude) meters"
-        print(displayString)
-        updateMapRegion(rangeSpan: 200)
-       
-        let pin = Annotation(coordinate: coordinate2D, title: displayString, subtitle: "")
-        mapView.addAnnotation(pin)
-        let dateFormatter = DateFormatter()
-        dateFormatter.timeZone = TimeZone.current
+        self.coordinate2D = location.coordinate
+        let displayString = "Coord:\(coordinate2D) Alt: \(location.altitude) meters"
         
-       printTimestamp(location: location)
+        updateMapRegion(rangeSpan: 200)
+        
+         let pin = Annotation(coordinate: coordinate2D, title: displayString, subtitle: "")
+      
+        mapView.addAnnotation(pin)
+       
+        
+        printTimestamp(date: Date().today)
  
     }
 }
+
 
 
 

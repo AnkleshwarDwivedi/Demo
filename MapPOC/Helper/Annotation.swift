@@ -65,7 +65,7 @@ public extension Date {
         formatter.calendar = Calendar(identifier: .iso8601)
         formatter.locale = Locale(identifier: "en_US_POSIX")
         formatter.timeZone = TimeZone.current
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        formatter.dateFormat = " EEEE , dd MMM , yyyy"
         return formatter
     }()
     
@@ -110,4 +110,46 @@ public extension Date {
     }
     
     
+}
+
+class Helper{
+
+public func placemark(annotation:Annotation, completionHandler: @escaping (CLPlacemark?) -> Void){
+    let coordinate = annotation.coordinate
+    let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
+    let geocoder = CLGeocoder()
+    geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
+        if let placemarks = placemarks{
+            completionHandler(placemarks.first)
+        } else {
+            completionHandler(nil)
+        }
+    }
+}
+
+public func getCoordinate( address:String, completionHandler: @escaping(CLLocationCoordinate2D?,String, NSError?)->Void){
+    let geocoder = CLGeocoder()
+    geocoder.geocodeAddressString(address) { (placemarks, error) in
+        if error == nil {
+            if let placemark = placemarks?[0]{
+                let coordinate = placemark.location?.coordinate
+                if let localtiy = (placemark.locality){
+                    let location = localtiy + " " + placemark.isoCountryCode!
+                    completionHandler(coordinate, location, nil)
+                }
+                else{
+                    let location = placemark.locality ?? ""
+                    completionHandler(coordinate, location, nil)
+                }
+                
+                
+                return
+            }
+        }
+        completionHandler(nil, "", error as NSError?)
+    }
+}
+    
+    
+   
 }
