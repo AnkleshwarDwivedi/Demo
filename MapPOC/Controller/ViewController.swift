@@ -49,11 +49,15 @@ class ViewController: UIViewController{
         searchBar.delegate = self
         searchBar.showsScopeBar = true
         setupCoreLocation()
-        addOverlay()
+        
         updateMapRegion(rangeSpan: 500)
         self.lblDate.text = Date().iso8601
         self.currentSelectedDate = Date().today
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        addOverlay()
     }
     
     func printTimestamp(date: Date) {
@@ -136,7 +140,7 @@ class ViewController: UIViewController{
     }
     
     func addOverlay(){
-        //let radius = 1600.0 //meters
+        
         for location in mapView.annotations{
             if let radius = (location as! Annotation).deliveryRadius{
                 let circle = MKCircle(center: location.coordinate, radius: radius)
@@ -149,6 +153,7 @@ class ViewController: UIViewController{
     @IBAction func clickToCurrentLocation(_ sender: Any) {
         
         self.mapView.setCenter(self.mapView.userLocation.coordinate, animated: true)
+        
     }
     
     func findAddress(address:String){
