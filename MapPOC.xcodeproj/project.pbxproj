@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1B6E5E68210F014C00E59890 /* EDSunriseSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6E5E66210F014C00E59890 /* EDSunriseSet.m */; };
+		1B6E5E77210F330E00E59890 /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6E5E76210F330E00E59890 /* CoreData.swift */; };
 		3B27F785210D9F7B0026519C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B27F784210D9F7B0026519C /* AppDelegate.swift */; };
 		3B27F787210D9F7B0026519C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B27F786210D9F7B0026519C /* ViewController.swift */; };
 		3B27F78A210D9F7B0026519C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B27F788210D9F7B0026519C /* Main.storyboard */; };
@@ -43,6 +44,7 @@
 		1B6E5E65210F014B00E59890 /* MapPOC-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MapPOC-Bridging-Header.h"; sourceTree = "<group>"; };
 		1B6E5E66210F014C00E59890 /* EDSunriseSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDSunriseSet.m; sourceTree = "<group>"; };
 		1B6E5E67210F014C00E59890 /* EDSunriseSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDSunriseSet.h; sourceTree = "<group>"; };
+		1B6E5E76210F330E00E59890 /* CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreData.swift; sourceTree = "<group>"; };
 		3B27F781210D9F7B0026519C /* MapPOC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapPOC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B27F784210D9F7B0026519C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3B27F786210D9F7B0026519C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 				3B27F7BF210E188E0026519C /* Annotation.swift */,
 				3B27F7C3210E27780026519C /* Delegatefile.swift */,
 				1B6E5E65210F014B00E59890 /* MapPOC-Bridging-Header.h */,
+				1B6E5E76210F330E00E59890 /* CoreData.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -348,6 +351,7 @@
 				3B27F78D210D9F7B0026519C /* MapPOC.xcdatamodeld in Sources */,
 				3B27F787210D9F7B0026519C /* ViewController.swift in Sources */,
 				3B27F785210D9F7B0026519C /* AppDelegate.swift in Sources */,
+				1B6E5E77210F330E00E59890 /* CoreData.swift in Sources */,
 				3B76C570210E2A5F00FB70FA /* VCViewModel.swift in Sources */,
 				3B27F7C0210E188E0026519C /* Annotation.swift in Sources */,
 				1B6E5E68210F014C00E59890 /* EDSunriseSet.m in Sources */,
